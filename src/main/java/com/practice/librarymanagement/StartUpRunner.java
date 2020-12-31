@@ -48,11 +48,11 @@ public class StartUpRunner implements ApplicationRunner {
 		
 		Date d= new SimpleDateFormat("yyyy-mm-dd").parse("2012-10-12");
 		List<Book> books = new ArrayList<Book>();
-		books.add( new Book("Fellowship Of The Ring", "isbn_lotr1", 3, d,
+		books.add( new Book("Fellowship Of The Ring", "isbn_lotr1", 3, new java.sql.Date(2020, 12, 21),
 				"Allen & Ulwin", "science-fiction", 1)  );
-		books.add( new Book("Avengers Assemble", "isb_avengers1", 2, new Date(2012, 6, 23),
+		books.add( new Book("Avengers Assemble", "isb_avengers1", 2, new java.sql.Date(2020, 12, 22),
 				"Marvel Studios", "science-fiction", 2) );
-		books.add( new Book("Justice League War", "isbn_jleague1", 5, new Date(2016, 2, 11), 
+		books.add( new Book("Justice League War", "isbn_jleague1", 5, new java.sql.Date(2020, 12, 23), 
 				"DC Comics", "science-fiction", 1) );
 		
 		books.forEach( book->{

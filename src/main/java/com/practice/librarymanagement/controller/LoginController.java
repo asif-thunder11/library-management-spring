@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.practice.librarymanagement.model.User;
 import com.practice.librarymanagement.model.UserDTO;
+import com.practice.librarymanagement.repository.UserDao;
 import com.practice.librarymanagement.service.LoginService;
 
 @RestController
@@ -68,5 +70,12 @@ public class LoginController {
 //		loginService.deleteByEnrollmentId(enrollmentId);
 //		return;
 //	}
+	
+	@GetMapping(value = "/user/like")
+	@PreAuthorize("hasAuthority('book:read')")
+	public List<User> getUserLike(@RequestBody  String pattern){
+		System.out.println("Pattern: "+pattern);
+		return loginService.getUsersLike(pattern);
+	}
 
 }

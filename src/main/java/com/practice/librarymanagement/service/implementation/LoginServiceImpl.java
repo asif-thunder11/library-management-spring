@@ -64,6 +64,11 @@ public class LoginServiceImpl implements LoginService {
 	public void logoutUser(HttpServletRequest request) {
 		request.getSession().setAttribute("user", null);
 	}
+	
+	@Override
+	public List<User> getUsersLike(String pattern) {
+		return userDao.findUsersLike(pattern);
+	}
 
 	public UserDTO mapper_UserDto(User user) {
 		return new UserDTO(user.getEnrollmentId(), user.getName(), user.getCategory());

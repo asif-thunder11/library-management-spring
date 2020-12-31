@@ -41,11 +41,11 @@ public class Book {
 	private int noOfCopies;
 	private int noOfCopiesAvailable;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	//@DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss" )
+	//@Temporal(TemporalType.DATE)
+	//@DateTimeFormat(pattern = "yyyy/mm/dd" )
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	//@JsonDeserialize(using = MyDateDeserializer.class)
-	Date publicationDate;
+	java.sql.Date publicationDate;
  
 	//String publicationDate;
 	
@@ -71,7 +71,7 @@ public class Book {
 	 * @param category
 	 * @param rack
 	 */
-	public Book(String title, String isbn, int noOfCopies, Date publicationDate, String publisher, String category,
+	public Book(String title, String isbn, int noOfCopies, java.sql.Date publicationDate, String publisher, String category,
 			int rack) {
 		this();
 		this.title = title;
@@ -116,11 +116,11 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	public Date getPublicationDate() {
+	public java.sql.Date getPublicationDate() {
 		return publicationDate;
 	}
 
-	public void setPublicationDate(Date publicationDate) {
+	public void setPublicationDate(java.sql.Date publicationDate) {
 		this.publicationDate = publicationDate;
 	}
 

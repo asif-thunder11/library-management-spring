@@ -29,7 +29,6 @@ public class BookRecord {
 	private RECORD_TYPE recordType;
 
 	// private int borrow_duration;
-
 	@ManyToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "book_id")
 	private Book book;

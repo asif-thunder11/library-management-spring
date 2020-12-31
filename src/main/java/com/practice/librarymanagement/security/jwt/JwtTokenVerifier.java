@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +22,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.google.common.base.Strings;
 import com.practice.librarymanagement.LibraryContext;
+import com.practice.librarymanagement.exception.RestApiException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -86,7 +88,8 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             System.out.println("SecurityContext Username: "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());	
         } catch (JwtException e) {
-            throw new IllegalStateException(String.format("Token %s cannot be trusted", token));
+//            throw new IllegalStateException(String.format("Token %s cannot be trusted", token));
+            throw new RestApiException(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
 
         filterChain.doFilter(request, response);

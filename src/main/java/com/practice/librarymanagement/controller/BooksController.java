@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,6 +40,8 @@ public class BooksController {
 	@GetMapping(value = "/books")
 	@PreAuthorize("hasAuthority('book:read')")
 	public List<Book> getBooks(HttpServletResponse response) {
+//		return ResponseEntity.status(HttpStatus.OK).body(bookService.findAll())
+		
 		return bookService.findAll();	
 	}
 	
@@ -88,10 +92,10 @@ public class BooksController {
 	public String getHeroes(){
 		System.out.println("Gave Heroes to angular");
 		String heroesString="[";
-		heroesString+= "{ \"id\":1,\"name\":\"Bruce Wayne\"},";
-		heroesString+= "{ \"id\":2,\"name\":\"Clark Kent\"},";
-		heroesString+= "{ \"id\":3,\"name\":\"Diana Prince\"},";
-		heroesString+= "{ \"id\":4,\"name\":\"Barry Allen\"}";
+		heroesString+= "{\"id\":1,\"name\":\"Bruce Wayne\"},";
+		heroesString+= "{\"id\":2,\"name\":\"Clark Kent\"},";
+		heroesString+= "{\"id\":3,\"name\":\"Diana Prince\"},";
+		heroesString+= "{\"id\":4,\"name\":\"Barry Allen\"}";
 		heroesString+="]";
 		
 		return heroesString;

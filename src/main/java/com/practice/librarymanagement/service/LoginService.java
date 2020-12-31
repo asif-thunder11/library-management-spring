@@ -15,5 +15,7 @@ public interface LoginService {
 	UserDTO addUser(User user);
 	UserDTO loginUser(long enrollmentId, String password);
 	void logoutUser(HttpServletRequest request);
+	
+	List<User> getUsersLike(String pattern);
 
 }
